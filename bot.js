@@ -55,6 +55,22 @@ controller.middleware.receive.use(wit.receive);
 console.log(wit.receive);
 console.log(wit);
 
+controller.hears(['spa'], 'message_received', wit.hears, function (bot, message) {
+    console.log("Wit.ai detected entities", message.entities);
+    //Example message: "I want a spa treatment"
+    //    {
+    //      "spa": [
+    //        {
+    //          "confidence": 1,
+    //          "type": "value",
+    //          "value": "spa"
+    //        }
+    //      ]
+    //    }
+    
+    //Your code here
+});
+
 // Set up an Express-powered webserver to expose oauth and webhook endpoints
 var webserver = require(__dirname + '/components/express_webserver.js')(controller);
 
