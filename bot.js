@@ -1,6 +1,11 @@
 var env = require('node-env-file');
 env(__dirname + '/.env');
 
+var wit = require('botkit-witai')({
+    accessToken: 'MDVRPN6RFRE7PGOVPLVSNM2E7LFJOPLN',
+    minConfidence: 0.6,
+    logLevel: 'debug'
+});
 
 if (!process.env.page_token) {
     console.log('Error: Specify a Facebook page_token in environment.');
@@ -24,6 +29,27 @@ var controller = Botkit.facebookbot({
     access_token: process.env.page_token,
     studio_token: process.env.studio_token,
     studio_command_uri: process.env.studio_command_uri,
+});
+
+controller.middleware.receive.use(wit.receive);
+
+console.log(wit.receive);
+console.log(wit);
+
+controller.hears(['spa'], 'message_received', wit.hears, function (bot, message) {
+    console.log("Wit.ai detected entities", message.entities);
+    //Example message: "I want a spa treatment"
+    //    {
+    //      "spa": [
+    //        {
+    //          "confidence": 1,
+    //          "type": "value",
+    //          "value": "spa"
+    //        }
+    //      ]
+    //    }
+    
+    //Your code here
 });
 
 // Set up an Express-powered webserver to expose oauth and webhook endpoints
