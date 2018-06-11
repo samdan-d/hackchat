@@ -8,7 +8,7 @@ module.exports = function(controller) {
         // And here
     });
 
-    controller.api.broadcast.send('1', null, function (err, body) {
+    controller.api.broadcast.send(1, null, function (err, body) {
         // Your awesome code here
         console.log(body);
         // And here
