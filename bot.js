@@ -20,6 +20,11 @@ This is a sample Facebook bot built with Botkit.
 var env = require('node-env-file');
 env(__dirname + '/.env');
 
+var wit = require('botkit-witai')({
+    accessToken: 'MDVRPN6RFRE7PGOVPLVSNM2E7LFJOPLN',
+    minConfidence: 0.6,
+    logLevel: 'debug'
+});
 
 if (!process.env.page_token) {
     console.log('Error: Specify a Facebook page_token in environment.');
@@ -44,6 +49,11 @@ var controller = Botkit.facebookbot({
     studio_token: process.env.studio_token,
     studio_command_uri: process.env.studio_command_uri,
 });
+
+controller.middleware.receive.use(wit.receive);
+
+console.log(wit.receive);
+console.log(wit);
 
 // Set up an Express-powered webserver to expose oauth and webhook endpoints
 var webserver = require(__dirname + '/components/express_webserver.js')(controller);
