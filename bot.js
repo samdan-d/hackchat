@@ -9,13 +9,11 @@ var wit = require('botkit-witai')({
 
 if (!process.env.page_token) {
     console.log('Error: Specify a Facebook page_token in environment.');
-    usage_tip();
     process.exit(1);
 }
 
 if (!process.env.verify_token) {
     console.log('Error: Specify a Facebook verify_token in environment.');
-    usage_tip();
     process.exit(1);
 }
 
@@ -74,4 +72,18 @@ require('botkit-studio-metrics')(controller);
 var normalizedPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
   require("./skills/" + file)(controller);
+});
+
+console.log('broadcast');
+    
+controller.api.broadcast.create_message_creative("Hello friend !", function (err, body) {
+    // Your awesome code here
+    console.log(body);
+    // And here
+});
+
+controller.api.broadcast.send(1, null, function (err, body) {
+    // Your awesome code here
+    console.log(body);
+    // And here
 });
