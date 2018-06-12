@@ -1,7 +1,7 @@
 // 1. Storage
 // 2. q and a
 
-module.exports = function (controller) {
+module.exports = function (controller, wit) {
 
     controller.hears([''], 'message_received', wit.hears, function (bot, message) {
         console.log("Wit.ai detected entities", message.entities);
