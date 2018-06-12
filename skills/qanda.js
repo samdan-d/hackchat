@@ -10,7 +10,7 @@ module.exports = function (controller, wit) {
         return true;
     });
 
-    controller.on('message_received', wit.hears, function (bot, message) {
+    controller.on('message_received', function (bot, message) {
         console.log(message.entities);
     });
 
