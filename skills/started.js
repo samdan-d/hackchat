@@ -1,8 +1,12 @@
 module.exports = function (controller, wit) {
 
-    controller.on('channel_join', function(bot, message) {
+    controller.on('facebook_payload', function(bot, message) {
+        if(message.payload === 'sample_get_started_payload'){
 
-        bot.reply(message,'Welcome to the channel!');
+            var user_id = message.sender.id;
+    
+            bot.reply(message,'Сайн байна уу?');
+        }
       
     });
 

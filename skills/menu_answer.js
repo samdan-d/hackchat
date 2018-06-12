@@ -2,6 +2,8 @@ module.exports = function(controller) {
     
     controller.on('facebook_postback', function(bot, message) {
         switch (message.payload) {
+            case 'sample_get_started_payload':
+                break;
             case 'menu_numRule':
                 ans_menu_numRule(bot, message);
                 break;            

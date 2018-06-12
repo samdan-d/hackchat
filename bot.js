@@ -19,8 +19,6 @@ if (!process.env.verify_token) {
 var Botkit = require('botkit');
 var mongoStorage = require('botkit-storage-mongo')({mongoUri: 'mongodb://<admin>:<password1>@ds155730.mlab.com:55730/numchat'}),
 
-var debug = require('debug')('botkit:main');
-
 // Create the Botkit controller, which controls all instances of the bot.
 var controller = Botkit.facebookbot({
     // debug: true,
