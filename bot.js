@@ -30,9 +30,8 @@ var controller = Botkit.facebookbot({
 
 controller.middleware.receive.use(wit.receive);
 
-controller.hears(['school_type'], 'message_received', wit.hears, function (bot, message) {
+controller.hears([''], 'message_received', wit.hears, function (bot, message) {
     console.log("Wit.ai detected entities", message.entities);
-    console.log()
     //Example message: "I want a spa treatment"
     //    {
     //      "spa": [
