@@ -3,6 +3,13 @@
 
 module.exports = function (controller, wit) {
 
+    controller.changeEars(function(patterns, message) {
+
+        console.log(message.entities);
+
+        return true;
+    });
+
     controller.on('message_received', wit.hears, function (bot, message) {
         console.log(message.entities);
     });
