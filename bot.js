@@ -2,7 +2,7 @@ var env = require('node-env-file');
 env(__dirname + '/.env');
 
 var wit = require('botkit-witai')({
-    accessToken: 'MDVRPN6RFRE7PGOVPLVSNM2E7LFJOPLN',
+    accessToken: process.env.wit_token,
     minConfidence: 0.6,
     logLevel: 'debug'
 });
@@ -30,9 +30,6 @@ var controller = Botkit.facebookbot({
 });
 
 controller.middleware.receive.use(wit.receive);
-
-console.log(wit.receive);
-console.log(wit);
 
 controller.hears(['spa'], 'message_received', wit.hears, function (bot, message) {
     console.log("Wit.ai detected entities", message.entities);
