@@ -3,8 +3,8 @@
 
 module.exports = function (controller, wit) {
 
-    controller.hears([''], 'message_received', wit.hears, function (bot, message) {
-        console.log("Wit.ai detected entities", message.entities);
+    controller.on('message_received', wit.hears, function (bot, message) {
+        console.log(message.entities);
     });
 
     controller.hears(['say'], 'message_received', (bot, message) => {
