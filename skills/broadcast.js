@@ -1,6 +1,4 @@
 module.exports = function(controller) {
-
-    console.log('broadcast');
     
     function broadcastToUser(message, spesificUser) {
         controller.api.broadcast.create_message_creative(message, function (err, body) {
